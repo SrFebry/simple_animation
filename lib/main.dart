@@ -1,23 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:simple_animation/widgets/animated_container.dart';
+import 'package:simple_animation/widgets/animated_cross_fade.dart';
+import 'package:simple_animation/widgets/animated_opacity.dart';
 
-class AnimatedContainerWidget extends StatefulWidget {
-  const AnimatedContainerWidget({super.key});
-  @override
-  State<AnimatedContainerWidget> createState() =>
-      _AnimatedContainerWidgetState();
+void main() {
+  runApp(const MyApp());
 }
 
-class _AnimatedContainerWidgetState extends State<AnimatedContainerWidget> {
-  final double _height = 100.0;
-  double _width = 100.0;
-  void _increaseWidth() {
-    setState(() {
-      _width = _width >= 350.0 ? 100.0 : _width += 50.0;
-    });
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Simple Animation',
+      home: HomeScreen(),
+    );
   }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Simple Animation'),
+        backgroundColor: Colors.blue[100],
+      ),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            AnimatedContainerWidget(),
+            Divider(),
+            AnimatedCrossFadeWidget(),
+            AnimatedOpacityWidget(),
+          ],
+        ),
+      ),
+    );
   }
 }
